@@ -1,0 +1,88 @@
+{
+  "id": "show_001",
+  "scheme": "СХЕМА ПОСАДКИ",
+  "platform_name": "Большой зал",
+  "date": "2026-08-25T19:00:00+03:00",
+  "seats": [
+    {
+      "id": 10001,
+      "row": 1,
+      "number": 1,
+      "color": "#4CAF50",
+      "price": 5000,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": 10002,
+      "row": 1,
+      "number": 2,
+      "color": "#4CAF50",
+      "price": 5000,
+      "status": "SOLD"
+    },
+    {
+      "id": 10003,
+      "row": 1,
+      "number": 3,
+      "color": "#4CAF50",
+      "price": 5000,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": 10004,
+      "row": 1,
+      "number": 4,
+      "color": "#4CAF50",
+      "price": 5000,
+      "status": "HELD"
+    },
+    {
+      "id": 10005,
+      "row": 1,
+      "number": 5,
+      "color": "#4CAF50",
+      "price": 5000,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": 10006,
+      "row": 2,
+      "number": 1,
+      "color": "#2196F3",
+      "price": 3500,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": 10007,
+      "row": 2,
+      "number": 2,
+      "color": "#2196F3",
+      "price": 3500,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": 10008,
+      "row": 2,
+      "number": 3,
+      "color": "#2196F3",
+      "price": 3500,
+      "status": "SOLD"
+    },
+    {
+      "id": 10009,
+      "row": 2,
+      "number": 4,
+      "color": "#2196F3",
+      "price": 3500,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": 10010,
+      "row": 2,
+      "number": 5,
+      "color": "#2196F3",
+      "price": 3500,
+      "status": "BLOCKED"
+    }
+  ]
+}

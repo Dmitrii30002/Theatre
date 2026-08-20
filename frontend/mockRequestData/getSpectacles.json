@@ -1,0 +1,34 @@
+{
+  "spectacles": [
+    {
+      "id": 1,
+      "name": "Гамлет",
+      "preview_url": "https://api.sourcesplash.com/i/random?q=architecture&w=800&h=600"
+    },
+    {
+      "id": 2,
+      "name": "Щелкунчик",
+      "preview_url": "https://api.sourcesplash.com/i/random?q=architecture&w=800&h=600"
+    },
+    {
+      "id": 3,
+      "name": "Мастер и Маргарита",
+      "preview_url": "https://api.sourcesplash.com/i/random?q=architecture&w=800&h=600"
+    },
+    {
+      "id": 4,
+      "name": "Гамлет2",
+      "preview_url": "https://api.sourcesplash.com/i/random?q=architecture&w=800&h=600"
+    },
+    {
+      "id": 5,
+      "name": "Щелкунчик2",
+      "preview_url": "https://api.sourcesplash.com/i/random?q=architecture&w=800&h=600"
+    },
+    {
+      "id": 6,
+      "name": "Мастер и Маргарита2",
+      "preview_url": "https://api.sourcesplash.com/i/random?q=architecture&w=800&h=600"
+    }
+  ]
+}

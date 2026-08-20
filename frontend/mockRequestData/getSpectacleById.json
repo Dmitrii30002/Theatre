@@ -1,0 +1,39 @@
+{
+  "id": 1,
+  "name": "Гамлет",
+  "preview_url": "https://api.sourcesplash.com/i/random?q=architecture&w=800&h=600",
+  "description": "Трагедия Уильяма Шекспира о принце Датском, стоящем перед выбором между местью, долгом и собственной совестью.",
+  "age_limit": 16,
+  "duration_minutes": 180,
+  "genre": "Драма",
+  "pushkin_card": true,
+  "theatre": {
+    "id": 1,
+    "name": "Большой театр"
+  },
+  "images": [
+    {
+      "url": "https://api.sourcesplash.com/i/random?q=architecture&w=800&h=600"
+    },
+    {
+      "url": "https://api.sourcesplash.com/i/random?q=architecture&w=800&h=600"
+    }
+  ],
+  "shows": [
+    {
+      "id": "show_001",
+      "platform_name": "Большой зал",
+      "date": "2026-08-25T19:00:00+03:00"
+    },
+    {
+      "id": "show_002",
+      "platform_name": "Большой зал",
+      "date": "2026-08-27T19:00:00+03:00"
+    },
+    {
+      "id": "show_003",
+      "platform_name": "Большой зал",
+      "date": "2026-08-30T14:00:00+03:00"
+    }
+  ]
+}
