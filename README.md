@@ -5,14 +5,14 @@
 ## Запуск приложения
 
 Для начала необходимо клонировать репозиторий (не забудьте перейти в рабочую директорию перед клонированием): <br>
-``` bash
-  git clone https://github.com/Dmitrii30002/Theatre.git
+```bash
+git clone https://github.com/Dmitrii30002/Theatre.git
 ```
 
 #### Backend
 Для запуска бэка необходимо выполнить следующую команду, находясь в главной директории: <br>
-``` bash
-  docker compose -f deploy/docker-compose.yml up
+```bash
+docker compose -f deploy/docker-compose.yml up
 ```
 
 ## Структура проекта
