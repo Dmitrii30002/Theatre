@@ -8,7 +8,6 @@
 ``` bash
   git clone https://github.com/Dmitrii30002/Theatre.git
 ```
-<br>
 
 #### Backend
 Для запуска бэка необходимо выполнить следующую команду, находясь в главной директории: <br>
