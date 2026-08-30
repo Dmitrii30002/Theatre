@@ -1,7 +1,0 @@
-{
-    "java.project.sourcePaths": [
-        "src/main/java/ru/theatreService"
-    ],
-    "java.debug.settings.onBuildFailureProceed": true,
-    "java.compile.nullAnalysis.mode": "automatic"
-}
