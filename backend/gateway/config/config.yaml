@@ -5,4 +5,5 @@ server:
   idle_timeout: 60s
   shutdown_timeout: 10s
 
-routes: []
+theatre_service:
+  address: "theatre-service:9090"

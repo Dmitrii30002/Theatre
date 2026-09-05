@@ -10,8 +10,8 @@ import (
 )
 
 type Config struct {
-	Server ServerConfig  `yaml:"server"`
-	Routes []RouteConfig `yaml:"routes"`
+	Server         ServerConfig         `yaml:"server"`
+	TheatreService TheatreServiceConfig `yaml:"theatre_service"`
 }
 
 type ServerConfig struct {
@@ -22,10 +22,8 @@ type ServerConfig struct {
 	ShutdownTimeout string `yaml:"shutdown_timeout"`
 }
 
-type RouteConfig struct {
-	Prefix      string `yaml:"prefix"`
-	Target      string `yaml:"target"`
-	StripPrefix bool   `yaml:"strip_prefix"`
+type TheatreServiceConfig struct {
+	Address string `yaml:"address"`
 }
 
 func Load(path string) (Config, error) {
@@ -48,17 +46,8 @@ func (c Config) Validate() error {
 	if c.Server.Address == "" {
 		return fmt.Errorf("server.address is required")
 	}
-	for i := range c.Routes {
-		route := &c.Routes[i]
-		if !strings.HasPrefix(route.Prefix, "/") {
-			return fmt.Errorf("routes[%d].prefix must start with /", i)
-		}
-		if route.Prefix != "/" {
-			route.Prefix = strings.TrimRight(route.Prefix, "/")
-		}
-		if route.Target == "" {
-			return fmt.Errorf("routes[%d].target is required", i)
-		}
+	if strings.TrimSpace(c.TheatreService.Address) == "" {
+		return fmt.Errorf("theatre_service.address is required")
 	}
 	return nil
 }

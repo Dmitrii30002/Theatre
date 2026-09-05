@@ -12,11 +12,12 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 
+	"gateway/internal/adapter/theatregrpc"
 	"gateway/internal/config"
 	"gateway/internal/controller"
-	"gateway/internal/domain"
-	"gateway/internal/service"
 )
 
 func Run() error {
@@ -31,18 +32,11 @@ func Run() error {
 		return err
 	}
 
-	routes := make([]domain.Route, 0, len(cfg.Routes))
-	for _, route := range cfg.Routes {
-		routes = append(routes, domain.Route{
-			Prefix:      route.Prefix,
-			Target:      route.Target,
-			StripPrefix: route.StripPrefix,
-		})
-	}
-	proxyService, err := service.NewProxyService(routes)
+	conn, err := grpc.NewClient(cfg.TheatreService.Address, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
-		return err
+		return fmt.Errorf("connect to theatre-service: %w", err)
 	}
+	defer conn.Close()
 
 	e := echo.New()
 	e.HideBanner = true
@@ -63,7 +57,7 @@ func Run() error {
 		_ = ctx.JSON(code, map[string]interface{}{"error": message})
 	}
 
-	controller.New(proxyService).Register(e)
+	controller.New(theatregrpc.NewClient(conn)).Register(e)
 
 	server := &httpServer{
 		echo:         e,

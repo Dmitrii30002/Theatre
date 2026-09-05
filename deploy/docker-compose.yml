@@ -1,7 +1,46 @@
 name: theater-api
 
 services:
-  api-gateway:
+  postgres:
+    image: postgres:16-alpine
+    container_name: theatre-postgres
+    environment:
+      POSTGRES_DB: theatre
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d theatre"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+    networks:
+      - theater-network
+
+  theatre-service:
+    build:
+      context: ../backend/theatre-service
+      dockerfile: Dockerfile
+    container_name: theatre-service
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/theatre
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    expose:
+      - "8080"
+      - "9090"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - theater-network
+
+  gateway:
     build:
       context: ../backend/gateway
       dockerfile: Dockerfile
@@ -10,9 +49,15 @@ services:
       - "8000:8080"
     environment:
       CONFIG_PATH: /app/config/config.yaml
+    depends_on:
+      theatre-service:
+        condition: service_started
     restart: unless-stopped
     networks:
       - theater-network
+
+volumes:
+  postgres-data:
 
 networks:
   theater-network:
