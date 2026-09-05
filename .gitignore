@@ -1,3 +1,6 @@
 архитектура.jpg
 схема БД.png
 
+# Maven build output
+backend/theatre-service/target/
+

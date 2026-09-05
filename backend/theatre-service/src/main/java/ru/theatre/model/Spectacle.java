@@ -6,9 +6,13 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "SPECTACLES")
@@ -40,6 +44,12 @@ public class Spectacle {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "theatre_id")
     private Theatre theatre;
+
+    @OneToMany(mappedBy = "spectacle", fetch = FetchType.LAZY)
+    private List<Show> shows = new ArrayList<>();
+
+    @OneToMany(mappedBy = "spectacle", fetch = FetchType.LAZY)
+    private List<SpectacleImage> images = new ArrayList<>();
 
     @Column(name = "preview_url")
     private String previewUrl;

@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package ru.theatre.proto;
+
+option java_package = "ru.theatre.proto";
+option java_multiple_files = true;
+
+message GetSpectaclesRequest {
+  int32 page = 1;
+  int32 size = 2;
+}
+
+message SpectaclePreview {
+  int64 id = 1;
+  string name = 2;
+  string preview_url = 3;
+}
+
+message GetSpectaclesResponse {
+  repeated SpectaclePreview spectacles = 1;
+}
+
+message GetSpectacleByIdRequest {
+  int64 id = 1;
+}
+
+message Theatre {
+  int64 id = 1;
+  string name = 2;
+}
+
+message SpectacleImage {
+  string url = 1;
+}
+
+message ShowPreview {
+  string id = 1;
+  string platform_name = 2;
+  string date = 3;
+}
+
+message GetSpectacleByIdResponse {
+  int64 id = 1;
+  string name = 2;
+  string preview_url = 3;
+  string description = 4;
+  int32 age_limit = 5;
+  int32 duration_minutes = 6;
+  string genre = 7;
+  bool pushkin_card = 8;
+  Theatre theatre = 9;
+  repeated SpectacleImage images = 10;
+  repeated ShowPreview shows = 11;
+}
+
+message GetShowByIdRequest {
+  string id = 1;
+}
+
+message Seat {
+  int64 id = 1;
+  int32 row = 2;
+  int32 number = 3;
+  string color = 4;
+  double price = 5;
+  string status = 6;
+}
+
+message GetShowByIdResponse {
+  string id = 1;
+  string scheme = 2;
+  string platform_name = 3;
+  string date = 4;
+  repeated Seat seats = 5;
+}
+
+service SpectacleService {
+  rpc GetSpectacles (GetSpectaclesRequest) returns (GetSpectaclesResponse);
+  rpc GetSpectacleById (GetSpectacleByIdRequest) returns (GetSpectacleByIdResponse);
+}
+
+service ShowService {
+  rpc GetShowById (GetShowByIdRequest) returns (GetShowByIdResponse);
+}

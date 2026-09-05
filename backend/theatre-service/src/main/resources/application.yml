@@ -5,7 +5,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/theatre
     username: postgres
-    password: password
+    password: dima15
     driver-class-name: org.postgresql.Driver
     hikari:
       schema: theatre
@@ -13,5 +13,8 @@ spring:
   flyway:
     enabled: true
     locations: classpath:db/migration
+    default-schema: theatre
+    schemas: theatre
     baseline-on-migrate: true
+    baseline-version: 1
 

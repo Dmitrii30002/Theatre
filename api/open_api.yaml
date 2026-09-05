@@ -107,7 +107,8 @@ components:
       description: Unique show identifier
       schema:
         type: string
-        example: "show_01J8XYZ123"
+        format: uuid
+        example: "550e8400-e29b-41d4-a716-446655440000"
 
 
   schemas:

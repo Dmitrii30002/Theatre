@@ -149,6 +149,20 @@ COMMENT ON COLUMN theatre.seats.group_id IS 'Идентификатор груп
 COMMENT ON COLUMN theatre.seats.show_id IS 'Идентификатор показа';
 COMMENT ON COLUMN theatre.seats.status IS 'Статус бронирования';
 
+
+--10. Изображения спектаклей
+CREATE TABLE IF NOT EXISTS theatre.spectacle_images (
+    id SERIAL PRIMARY KEY,
+    url VARCHAR,
+    spectacle_id INT,
+    CONSTRAINT spectacle_images_fk FOREIGN KEY (spectacle_id) REFERENCES theatre.spectacles(id) ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+-- Column comments
+COMMENT ON COLUMN theatre.spectacle_images.id IS 'Идентификатор';
+COMMENT ON COLUMN theatre.spectacle_images.url IS 'Ссылка';
+COMMENT ON COLUMN theatre.spectacle_images.spectacle_id IS 'Идентификатор спектакля';
+
 -- ============================================
 -- ИНДЕКСЫ
 -- ============================================
