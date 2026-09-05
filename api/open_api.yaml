@@ -335,9 +335,9 @@ components:
           type: string
           enum:
             - AVAILABLE
-            - HELD
-            - SOLD
-            - BLOCKED
+            - RESERVED
+            - BOOKED
+            - UNAVAILABLE
           example: AVAILABLE
 
 

@@ -1,6 +1,6 @@
 # API Gateway
 
-Reverse proxy на Go и Echo. Gateway принимает запросы, выбирает upstream по самому длинному совпавшему префиксу и при необходимости убирает префикс перед отправкой запроса.
+Gateway на Go и Echo. Он принимает HTTP-запросы и вызывает соответствующие gRPC-методы `theatre-service`.
 
 ## Запуск
 
@@ -24,23 +24,30 @@ GET http://localhost:8080/ready
 
 ## Конфигурация
 
-Маршрут состоит из `prefix`, `target` и `strip_prefix`:
+Адрес theatre-service задаётся в `config/config.yaml`:
 
 ```yaml
-routes:
-  - prefix: /api/users
-    target: http://localhost:8081
-    strip_prefix: true
+theatre_service:
+  address: "localhost:9090"
 ```
 
-При `strip_prefix: true` запрос `/api/users/42` уйдёт в upstream как `/42`. Секреты и адреса окружений не должны храниться в репозитории: для них используйте переменные окружения или отдельный конфигурационный файл.
+Поддерживаются следующие HTTP-маршруты:
+
+```text
+GET /api/spectacles?page=0&size=20
+GET /api/spectacles/{id}
+GET /api/shows/{id}
+```
+
+Gateway не хранит данные предметной области и не генерирует mock-ответы. Protobuf-клиент сгенерирован из `theatre-service/src/main/proto/spectacle.proto`.
 
 ## Структура
 
 - `cmd/` - запуск приложения и сборка зависимостей.
 - `internal/config/` - загрузка и валидация YAML.
-- `internal/controller/` - HTTP handlers Echo.
-- `internal/service/` - маршрутизация и reverse proxy.
+- `internal/controller/` - HTTP handlers Echo и преобразование ошибок.
+- `internal/service/` - порт приложения для theatre-service.
+- `internal/adapter/theatregrpc/` - gRPC-адаптер и преобразование protobuf в domain.
 - `internal/domain/` - доменные модели.
 - `config/` - пример конфигурации.
 
